@@ -11,10 +11,12 @@
 
 <div class="row">
   <div class="medium-2 columns">
-      <h1>Inscription</h1>
+      <h1>Modification</h1>
   </div>
 </div>
-<form class="" method="post" action="index.php?uc=user&action=inscription">
+
+<?php echo '<form class="" method="post" action="index.php?uc=user&action=edit&id='.$user[0]['id_user'].'">';?>
+
   <br><br>
     <div class="row">
       <div class="medium-2 columns">
@@ -68,8 +70,24 @@
     </div>
     <div class="row">
       <div class="medium-2 columns">
-        <button type="submit" class="secondary button">S'inscrire</button>
+        <button type="submit" <?php echo $affiche ?> class="secondary button">Mettre à jour</button>
       </div>
     </div>
 
 </form>
+<form class="" action="index.php?uc=user&action=delete" method="post">
+  <div class="row">
+    <div class="medium-2 columns">
+  <?php echo '<input type="hidden" name="id" value="'.$user[0]['id_user'].'">';?>
+  <input class="secondary button" <?php echo $affiche ?> type="submit" name="submit" value="Supprimer">
+</div>
+</div>
+</form>
+
+<div class="row">
+  <div class="medium-2 columns">
+<a href="index.php?uc=user&action=index"
+  class="alert button">retour
+</a>
+</div>
+</div>

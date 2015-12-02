@@ -57,14 +57,22 @@ class User{
 
 	}
 	// modifie un user
-	public static function edit($idUSer)
+	public static function edit($idUSer, $nom,$prenom,$adresse_rue,$adresse_cp,$adresse_ville,$email,$date_de_naissance,$photo,$identifiant,$mot_de_passe)
 	{
+		$bdd = Connection::db_connect();
+		$req = $bdd->prepare("UPDATE user
+			SET nom = '".$nom."',prenom = '".$prenom."',adresse_cp = '".$adresse_cp."',adresse_ville = '".$adresse_ville."',adresse_rue = '".$adresse_rue."',email = '".$email."',date_de_naissance = '".$date_de_naissance."'
+				WHERE id_user=".$idUSer."");
+
+			$req->execute();
 
 	}
 	// supprime un user
 	public static function delete($idUser)
 	{
-
+		$bdd = Connection::db_connect();
+		$req = $bdd->prepare('DELETE FROM user WHERE id_user='.$idUser.'');
+		$req->execute();
 	}
 
 

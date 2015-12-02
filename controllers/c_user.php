@@ -74,12 +74,27 @@ switch($action){
 
 
 	case 'edit' :{
-		//TODO
-		break;
+    $idUser = $_GET['id'];
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $adresse_rue = $_POST['adresse_rue'];
+    $adresse_cp = $_POST['adresse_cp'];
+    $adresse_ville = $_POST['adresse_ville'];
+    $email = $_POST['email'];
+    $date_de_naissance = $_POST['date_de_naissance'];
+    $photo = $_POST['photo'];
+    $identifiant = $_POST['identifiant'];
+    $mot_de_passe = $_POST['mot_de_passe'];
+    User::edit($idUser,$nom,$prenom,$adresse_rue,$adresse_cp,$adresse_ville,$email,$date_de_naissance,$photo,$identifiant,$mot_de_passe);
+    $user = User::view($idUser);
+    include('vues/user/v_view.php');
+    break;
 	}
 
 	case 'delete' :{
-		//TODO
+		$idUser = $_POST['id'];
+    User::delete($idUser);
+    header('Location: ./index.php');
 		break;
 	}
 
