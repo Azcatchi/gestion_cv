@@ -10,13 +10,13 @@ class User{
 	public static function toConnect($identifiant,$motDePasse)
 	{
 		$bdd = Connection::db_connect();
-		$req = $bdd->query('SELECT * FROM user 
-			WHERE identifiant ="' .$identifiant . '" 
+		$req = $bdd->query('SELECT * FROM user
+			WHERE identifiant ="' .$identifiant . '"
 			AND mot_de_passe = "'.$motDePasse.'"  ');
 		$reponse = $req->fetchAll();
 		return $reponse ? $reponse : "Erreur connexion";
 	}
-	
+
 	// affiche tous les users
 	public static function index()
 	{
@@ -37,8 +37,23 @@ class User{
 
 	// ajoute un user (inscription)
 	// je vous aiderai pour le md5 si besoin.
-	public static function add()
+	public static function add($nom,$prenom,$adresse_rue,$adresse_cp,$adresse_ville,$email,$date_de_naissance,$photo,$identifiant,$mot_de_passe)
 	{
+		$bdd = Connection::db_connect();
+		$req = $bdd->prepare('INSERT INTO user(nom, prenom, adresse_rue, adresse_cp, adresse_ville, email, date_de_naissance, photo, identifiant, mot_de_passe)
+		VALUES (:nom, :prenom, :adresse_rue, :adresse_cp, :adresse_ville, :email, :date_de_naissance, :photo, :identifiant, :mot_de_passe)');
+			$req->bindParam(':nom', $nom);
+			$req->bindParam(':prenom', $prenom);
+			$req->bindParam(':adresse_rue', $adresse_rue);
+			$req->bindParam(':adresse_cp', $adresse_cp);
+			$req->bindParam(':adresse_ville', $adresse_ville);
+			$req->bindParam(':email', $email);
+			$req->bindParam(':date_de_naissance', $date_de_naissance);
+			$req->bindParam(':photo', $photo);
+			$req->bindParam(':identifiant', $identifiant);
+			$req->bindParam(':mot_de_passe', $mot_de_passe);
+
+			$req->execute();
 
 	}
 	// modifie un user

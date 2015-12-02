@@ -2,7 +2,7 @@
 //controller user
 if(!isset($_REQUEST['action']) ){
      $_REQUEST['action'] = 'default';
-}    
+}
 $action = $_REQUEST['action'];
 require_once('modeles/m_user.php');
 switch($action){
@@ -20,7 +20,7 @@ switch($action){
 		//S'il existe on met dans la superglobale SESSION ses informations
 		if($user){
 			$_SESSION['id_user'] = $user[0]['id_user'];
-			$_SESSION['identifiant'] = $user[0]['identifiant']		;	
+			$_SESSION['identifiant'] = $user[0]['identifiant']		;
 		}
 
 		// Dans tous les cas on redirige sur l'index (pour l'instant)
@@ -30,8 +30,8 @@ switch($action){
 
 	case 'toDisconnect':{
 		include('vues/user/v_deconnection.html');
-		header('Location: ./index.php');  
-		break; 
+		header('Location: ./index.php');
+		break;
 	}
 
 
@@ -42,37 +42,51 @@ switch($action){
 		break;
 	}
 
-
-
 	case 'view' :{
 		$idUser = $_GET['id'];
 		$user = User::view($idUser);
-		include('vues/user/v_view.html');
+		include('vues/user/v_view.php');
 		break;
 	}
 
 
-
 	case 'add' :{
-		//TODO
-		break;
-	} 
+
+		include('vues/user/v_add.php');
+    break;
+	}
+
+  case 'inscription' :{
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $adresse_rue = $_POST['adresse_rue'];
+    $adresse_cp = $_POST['adresse_cp'];
+    $adresse_ville = $_POST['adresse_ville'];
+    $email = $_POST['email'];
+    $date_de_naissance = $_POST['date_de_naissance'];
+    $photo = $_POST['photo'];
+    $identifiant = $_POST['identifiant'];
+    $mot_de_passe = $_POST['mot_de_passe'];
+    $Add = User::add($nom,$prenom,$adresse_rue,$adresse_cp,$adresse_ville,$email,$date_de_naissance,$photo,$identifiant,$mot_de_passe);
+    header('Location: ./index.php');
+    break;
+  }
 
 
 	case 'edit' :{
 		//TODO
 		break;
-	} 
+	}
 
 	case 'delete' :{
 		//TODO
 		break;
-	} 
+	}
 
 
 
     default:
-    	header('Location: ./index.php');  
+    	header('Location: ./index.php');
     	break;
 }
 

@@ -4,7 +4,6 @@ body,html{
 }
 
 header{
-	background-image: url("../img/header.png");
 	min-height: 100px;
 
 }
@@ -56,4 +55,3 @@ a:active {
 .formConnection > input{
    color:black;
 }
-
