@@ -6,4 +6,50 @@ $(document).ready(function(){
 		// l'id de l'user que l'on vient de récupérer.
 		document.location.href="index.php?uc=user&action=view&id="+idUser;
 	});
+
+	$('#Experience').hide();
+	$('#Competences').hide();
+	$('#Formation').hide();
+	$('#Loisirs').hide();
+
+	$('#buttonrendu').click(function(){
+		$('#Rendu').show();
+		$('#Experience').hide();
+		$('#Competences').hide();
+		$('#Formation').hide();
+		$('#Loisirs').hide();
+	});
+
+	$('#buttonexperiences').click(function(){
+		$('#Rendu').hide();
+		$('#Experience').show();
+		$('#Competences').hide();
+		$('#Formation').hide();
+		$('#Loisirs').hide();
+	});
+
+	$('#buttoncompetences').click(function(){
+		$('#Rendu').hide();
+		$('#Experience').hide();
+		$('#Competences').show();
+		$('#Formation').hide();
+		$('#Loisirs').hide();
+	});
+
+	$('#buttonformation').click(function(){
+		$('#Rendu').hide();
+		$('#Experience').hide();
+		$('#Competences').hide();
+		$('#Formation').show();
+		$('#Loisirs').hide();
+	});
+
+	$('#buttonloisirs').click(function(){
+		$('#Rendu').hide();
+		$('#Experience').hide();
+		$('#Competences').hide();
+		$('#Formation').hide();
+		$('#Loisirs').show();
+	});
+
 });

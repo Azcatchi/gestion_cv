@@ -45,7 +45,8 @@ switch($action){
 	case 'view' :{
 		$idUser = $_GET['id'];
 		$user = User::view($idUser);
-		include('vues/user/v_view.php');
+    include('vues/user/v_view.php');
+    include('vues/cv/c_cv.php');
 		break;
 	}
 
